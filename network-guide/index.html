@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BẢO BỐI CẤU HÌNH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="document-wrapper">
+        <header class="doc-header">
+            <h1>BẢO BỐI CẤU HÌNH VIGOR</h1>
+            <p class="doc-meta">by:hgh</p>
+        </header>
+
+        <nav class="toc">
+            <strong>Nội dung:</strong>
+            <ul>
+                <li><a href="#section-1">1. Thông tin Nhóm 4</a></li>
+                <li><a href="#section-2">2. Thông tin IP Cơ bản</a></li>
+                <li><a href="#section-3">3. Policy Route</a></li>
+                <li><a href="#section-4">4. Chặn VLAN1 truy cập Garena.vn</a></li>
+                <li><a href="#section-5">5. Chặn VLAN2 truy cập Facebook.com</a></li>
+                <li><a href="#section-6">6. Gợi ý IP (IP Suggest)</a></li>
+            </ul>
+        </nav>
+
+        <main class="doc-content">
+            <!-- Section 1 -->
+            <section id="section-1">
+                <h2>1. Cấu hình 2WAN</h2>
+                <div class="step">
+                    <p>Click vào các thông số dưới đây để copy:</p>
+                    <div class="copy-grid">
+                        <button class="copy-btn" data-copy="192.168.220.55"><span class="btn-label">IP:</span>
+                            192.168.220.55</button>
+                        <button class="copy-btn" data-copy="192.168.220.1"><span class="btn-label">GATEWAY:</span>
+                            192.168.220.1</button>
+                        <button class="copy-btn" data-copy="255.255.255.0"><span class="btn-label">SM:</span>
+                            255.255.255.0</button>
+                        <button class="copy-btn" data-copy="nhom4"><span class="btn-label">Username:</span>
+                            nhom4</button>
+                        <button class="copy-btn" data-copy="nhom4"><span class="btn-label">Pass:</span> nhom4</button>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <!-- Section 2 -->
+            <section id="section-2">
+                <h2>2. Thông tin IP Cơ bản</h2>
+                <div class="step">
+                    <p>Click vào các thông số dưới đây để copy:</p>
+                    <div class="copy-grid">
+                        <button class="copy-btn" data-copy="192.168.100.1"><span class="btn-label">VLAN 1:</span>
+                            192.168.100.1</button>
+                        <button class="copy-btn" data-copy="192.168.101.1"><span class="btn-label">VLAN 2:</span>
+                            192.168.101.1</button>
+                        <button class="copy-btn" data-copy="255.255.255.0"><span class="btn-label">SM:</span>
+                            255.255.255.0</button>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <!-- Section 3 -->
+            <section id="section-3">
+                <h2>3. Policy Route</h2>
+
+                <div class="step">
+                    <h3>3.1. Tạo IP Object VLAN 1</h3>
+                    <div class="copy-grid">
+                        <button class="copy-btn" data-copy="VLAN1_NET"><span class="btn-label">Name:</span>
+                            VLAN1_NET</button>
+                        <button class="copy-btn" data-copy="Subnet Address"><span class="btn-label">Address Type:</span>
+                            Subnet Address</button>
+                        <button class="copy-btn" data-copy="192.168.100.0"><span class="btn-label">IP Address:</span>
+                            192.168.100.0</button>
+                        <button class="copy-btn" data-copy="255.255.255.0"><span class="btn-label">Subnet Mask:</span>
+                            255.255.255.0</button>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>3.2. Tạo IP GROUP VLAN 1</h3>
+                    <p>Tên Group:</p>
+                    <div class="copy-grid">
+                        <button class="copy-btn" data-copy="VLAN1_GROUP">VLAN1_GROUP</button>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>3.3. Tạo IP Object VLAN 2</h3>
+                    <div class="copy-grid">
+                        <button class="copy-btn" data-copy="VLAN2_NET"><span class="btn-label">Name:</span>
+                            VLAN2_NET</button>
+                        <button class="copy-btn" data-copy="Subnet Address"><span class="btn-label">Address Type:</span>
+                            Subnet Address</button>
+                        <button class="copy-btn" data-copy="192.168.101.0"><span class="btn-label">IP Address:</span>
+                            192.168.101.0</button>
+                        <button class="copy-btn" data-copy="255.255.255.0"><span class="btn-label">Subnet Mask:</span>
+                            255.255.255.0</button>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>3.4. Tạo IP GROUP VLAN 2</h3>
+                    <p>Tên Group:</p>
+                    <div class="copy-grid">
+                        <button class="copy-btn" data-copy="VLAN2_GROUP">VLAN2_GROUP</button>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>3.5. Tạo Policy Route cho VLAN 1</h3>
+                    <p>Điều hướng: <em>WAN >> Load-Balance/Route Policy</em> (Không failback)</p>
+                </div>
+
+                <div class="step">
+                    <h3>3.6. Tạo Policy Route cho VLAN 2</h3>
+                    <p>Có tính năng <em>failback</em>.</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <!-- Section 4 -->
+            <section id="section-4">
+                <h2>4. Chặn VLAN1 truy cập Garena.vn theo IP</h2>
+
+                <div class="step">
+                    <h3>4.1. Lấy IP Garena</h3>
+                    <div class="copy-grid">
+                        <button class="copy-btn" data-copy="137.59.117.192">137.59.117.192</button>
+                        <button class="copy-btn" data-copy="137.59.117.191">137.59.117.191</button>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>4.2. Tạo IP Object cho Garena</h3>
+                    <p>Tạo các object:</p>
+                    <div class="copy-grid">
+                        <button class="copy-btn" data-copy="GARENA_IP_1">GARENA_IP_1</button>
+                        <button class="copy-btn" data-copy="GARENA_IP_2">GARENA_IP_2</button>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>4.3. Tạo IP Group cho Garena</h3>
+                    <p>Tên Group:</p>
+                    <div class="copy-grid">
+                        <button class="copy-btn" data-copy="GARENA_GROUP">GARENA_GROUP</button>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>4.4. Tạo Firewall Rule chặn Garena</h3>
+                    <p>Tên Rule:</p>
+                    <div class="copy-grid">
+                        <button class="copy-btn" data-copy="BLOCK_VLAN1_TO_GARENA">BLOCK_VLAN1_TO_GARENA</button>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <!-- Section 5 -->
+            <section id="section-5">
+                <h2>5. Chặn VLAN2 truy cập Facebook.com và fb.com</h2>
+
+                <div class="step">
+                    <h3>5.1. Tạo Keyword Object</h3>
+                    <p>Từ khóa:</p>
+                    <div class="copy-grid">
+                        <button class="copy-btn" data-copy="FACEBOOK_COM">FACEBOOK_COM</button>
+                        <button class="copy-btn" data-copy="FB_COM">FB_COM</button>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>5.2. Tạo Keyword Group</h3>
+                    <p>Tên Group:</p>
+                    <div class="copy-grid">
+                        <button class="copy-btn" data-copy="FACEBOOK_GROUP">FACEBOOK_GROUP</button>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>5.3. Tạo URL Filter Profile</h3>
+                    <p>Tên Profile:</p>
+                    <div class="copy-grid">
+                        <button class="copy-btn" data-copy="BLOCK_FACEBOOK">BLOCK_FACEBOOK</button>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>5.4. Tạo DNS Filter Profile</h3>
+                    <p>Tên Profile:</p>
+                    <div class="copy-grid">
+                        <button class="copy-btn" data-copy="DNS_FB_FILTER">DNS_FB_FILTER</button>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>5.5. Cấu hình DNS cho VLAN 2</h3>
+                    <p>Áp dụng DNS Filter Profile đã tạo cho VLAN 2.</p>
+                </div>
+
+                <div class="step">
+                    <h3>5.6. Tạo Firewall Rule cho VLAN 2</h3>
+                    <p>Kết hợp URL Filter và DNS Filter để hoàn tất việc chặn.</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <!-- Section 6 -->
+            <section id="section-6">
+                <h2>6. Gợi ý IP (IP Suggest)</h2>
+
+                <div class="step">
+                    <h3>Class A</h3>
+                    <div class="copy-grid">
+                        <button class="copy-btn" data-copy="10.1.1.1/8">10.1.1.1/8</button>
+                        <button class="copy-btn" data-copy="25.10.20.30/8">25.10.20.30/8</button>
+                        <button class="copy-btn" data-copy="50.5.5.5/8">50.5.5.5/8</button>
+                        <button class="copy-btn" data-copy="100.100.1.1/8">100.100.1.1/8</button>
+                        <button class="copy-btn" data-copy="126.1.1.1/8">126.1.1.1/8</button>
+                        <button class="copy-btn" data-copy="255.0.0.0"><span class="btn-label">Mask mặc định:</span>
+                            255.0.0.0</button>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>Class B</h3>
+                    <div class="copy-grid">
+                        <button class="copy-btn" data-copy="128.1.1.1/16">128.1.1.1/16</button>
+                        <button class="copy-btn" data-copy="150.10.20.30/16">150.10.20.30/16</button>
+                        <button class="copy-btn" data-copy="172.16.1.1/16">172.16.1.1/16</button>
+                        <button class="copy-btn" data-copy="180.100.50.25/16">180.100.50.25/16</button>
+                        <button class="copy-btn" data-copy="191.1.1.1/16">191.1.1.1/16</button>
+                        <button class="copy-btn" data-copy="255.255.0.0"><span class="btn-label">Mask mặc định:</span>
+                            255.255.0.0</button>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>Class C</h3>
+                    <div class="copy-grid">
+                        <button class="copy-btn" data-copy="192.168.1.55/24">192.168.1.55/24</button>
+                        <button class="copy-btn" data-copy="200.10.20.30/24">200.10.20.30/24</button>
+                        <button class="copy-btn" data-copy="210.1.1.1/24">210.1.1.1/24</button>
+                        <button class="copy-btn" data-copy="220.100.50.25/24">220.100.50.25/24</button>
+                        <button class="copy-btn" data-copy="223.1.1.1/24">223.1.1.1/24</button>
+                        <button class="copy-btn" data-copy="255.255.255.0"><span class="btn-label">Mask mặc định:</span>
+                            255.255.255.0</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="doc-footer">
+            <p>Tài liệu được tạo để lưu trữ nội bộ và xuất bản tĩnh.</p>
+        </footer>
+    </div>
+
+    <!-- Thông báo khi copy -->
+    <div id="copy-toast" class="toast">Đã copy!</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toast = document.getElementById('copy-toast');
+            let timeoutId;
+
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const text = btn.getAttribute('data-copy') || btn.innerText;
+                    navigator.clipboard.writeText(text).then(() => {
+                        toast.classList.add('show');
+
+                        const originalBg = btn.style.backgroundColor;
+                        const originalBorder = btn.style.borderColor;
+
+                        btn.style.backgroundColor = '#f0fdf4';
+                        btn.style.borderColor = '#22c55e';
+
+                        clearTimeout(timeoutId);
+                        timeoutId = setTimeout(() => {
+                            toast.classList.remove('show');
+                            btn.style.backgroundColor = originalBg;
+                            btn.style.borderColor = originalBorder;
+                        }, 2000);
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
